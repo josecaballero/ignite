@@ -37,6 +37,14 @@ const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
 const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 // Popular Games
-const popular_games = `games?key=8039a19b75ae4d48926d74a4ff4f5069&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+const popular_games = `games?key=${process.env.REACT_APP_IGNITE}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+
+// New Games
+const new_games = `games?key=${process.env.REACT_APP_IGNITE}&dates=${lastYear},${currentDate}&ordering=-release&page_size=10`;
+
+// Upcoming Games
+const upcoming_games = `games?key=${process.env.REACT_APP_IGNITE}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 
 export const popularGamesURL = () => `${base_url}${popular_games}`;
+export const newGamesURL = () => `${base_url}${new_games}`;
+export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
