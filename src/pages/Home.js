@@ -12,8 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(loadGames());
-    console.log("i fire once");
-  }, [dispatch]); // OJO: SI NO PONEMOS EL ARRAY DEPENDENCY VACÍO, SE EJECUTA SIN PARAR. SI QUEREMOS QUE SE EJECUTE CADA VEZ QUE CAMBIE EL ESTADO DE ALGO SE PONE AHÍ DICHO ELEMENTO.
+  }, []); // OJO: SI NO PONEMOS EL ARRAY DEPENDENCY VACÍO, SE EJECUTA SIN PARAR. SI QUEREMOS QUE SE EJECUTE CADA VEZ QUE CAMBIE EL ESTADO DE ALGO SE PONE AHÍ DICHO ELEMENTO.
 
   // Get the data back
   // const games = useSelector((state) => state.games);

@@ -52,3 +52,7 @@ export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
 // GAME DETAILS
 export const gameDetailsURL = (game_id) =>
   `${base_url}games/${game_id}?key=${process.env.REACT_APP_IGNITE}`;
+
+// GAME Scrseenshot
+export const gameScreenshotsURL = (game_id) =>
+  `${base_url}games/${game_id}/screenshots?key=${process.env.REACT_APP_IGNITE}`;
