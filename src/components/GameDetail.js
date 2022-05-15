@@ -12,23 +12,23 @@ const GameDetail = () => {
     <div>
       <CardShadow>
         <Detail>
-          <div className="stats">
+          <Stats>
             <div className="rating">
               <h3>{game.name}</h3>
               <p>{game.rating}</p>
             </div>
-            <div className="info">
+            <Info>
               <h3>Platforms</h3>
-              <div className="platforms">
+              <Platforms>
                 {game.platforms.map((data) => (
                   <h3 key={data.platform.id}>{data.platform.name}</h3>
                 ))}
-              </div>
-            </div>
-          </div>
-          <div className="media">
+              </Platforms>
+            </Info>
+          </Stats>
+          <Media>
             <img src={game.background_image} alt="image" />
-          </div>
+          </Media>
           <div className="description">
             <p>{game.description_raw}</p>
           </div>
@@ -65,11 +65,36 @@ const CardShadow = styled(motion.div)`
 const Detail = styled(motion.div)`
   width: 80%;
   border-radius: 1rem;
-  padding: 2rem 10rem;
+  padding: 2rem 5rem;
   background: #fff;
   position: absolute;
   left: 10%;
   color: #000;
+  img {
+    width: 100%;
+  }
+`;
+
+const Stats = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Info = styled(motion.div)`
+  text-align: center;
+`;
+
+const Platforms = styled(motion.div)`
+  display: flex;
+  justify-content: space-evenly;
+  img {
+    margin-left: 3rem;
+  }
+`;
+
+const Media = styled(motion.div)`
+  margin-top: 5rem;
   img {
     width: 100%;
   }
