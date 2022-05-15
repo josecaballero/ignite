@@ -12,7 +12,8 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(loadGames());
-  }, []); // OJO: SI NO PONEMOS EL ARRAY DEPENDENCY VACÍO, SE EJECUTA SIN PARAR. SI QUEREMOS QUE SE EJECUTE CADA VEZ QUE CAMBIE EL ESTADO DE ALGO SE PONE AHÍ DICHO ELEMENTO.
+    console.log("i fire once");
+  }, [dispatch]); // OJO: SI NO PONEMOS EL ARRAY DEPENDENCY VACÍO, SE EJECUTA SIN PARAR. SI QUEREMOS QUE SE EJECUTE CADA VEZ QUE CAMBIE EL ESTADO DE ALGO SE PONE AHÍ DICHO ELEMENTO.
 
   // Get the data back
   // const games = useSelector((state) => state.games);
@@ -27,6 +28,37 @@ const Home = () => {
           return (
             <Game
               key={game.id}
+              id={game.id}
+              name={game.name}
+              releaseDate={game.released}
+              image={game.background_image}
+            />
+          );
+        })}
+      </Games>
+
+      <h2>Popular Games</h2>
+      <Games>
+        {popular.map((game) => {
+          return (
+            <Game
+              key={game.id}
+              id={game.id}
+              name={game.name}
+              releaseDate={game.released}
+              image={game.background_image}
+            />
+          );
+        })}
+      </Games>
+
+      <h2>New Games</h2>
+      <Games>
+        {newGames.map((game) => {
+          return (
+            <Game
+              key={game.id}
+              id={game.id}
               name={game.name}
               releaseDate={game.released}
               image={game.background_image}
