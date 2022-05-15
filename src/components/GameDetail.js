@@ -6,39 +6,43 @@ import { useSelector } from "react-redux";
 
 const GameDetail = () => {
   // Data
-  const { game, screenshot } = useSelector((state) => state.detail);
+  const { game, screenshot, isLoading } = useSelector((state) => state.detail);
 
   return (
     <div>
-      <CardShadow>
-        <Detail>
-          <Stats>
-            <div className="rating">
-              <h3>{game.name}</h3>
-              <p>{game.rating}</p>
-            </div>
-            <Info>
-              <h3>Platforms</h3>
-              <Platforms>
-                {game.platforms.map((data) => (
-                  <h3 key={data.platform.id}>{data.platform.name}</h3>
+      <>
+        {!isLoading && (
+          <CardShadow>
+            <Detail>
+              <Stats>
+                <div className="rating">
+                  <h3>{game.name}</h3>
+                  <p>{game.rating}</p>
+                </div>
+                <Info>
+                  <h3>Platforms</h3>
+                  <Platforms>
+                    {game.platforms.map((data) => (
+                      <h3 key={data.platform.id}>{data.platform.name}</h3>
+                    ))}
+                  </Platforms>
+                </Info>
+              </Stats>
+              <Media>
+                <img src={game.background_image} alt="image" />
+              </Media>
+              <Description>
+                <p>{game.description_raw}</p>
+              </Description>
+              <div className="gallery">
+                {screenshot.results.map((screenshot) => (
+                  <img key={screenshot.id} src={screenshot.image} alt="game" />
                 ))}
-              </Platforms>
-            </Info>
-          </Stats>
-          <Media>
-            <img src={game.background_image} alt="image" />
-          </Media>
-          <div className="description">
-            <p>{game.description_raw}</p>
-          </div>
-          <div className="gallery">
-            {screenshot.results.map((screenshot) => (
-              <img key={screenshot.id} src={screenshot.image} alt="game" />
-            ))}
-          </div>
-        </Detail>
-      </CardShadow>
+              </div>
+            </Detail>
+          </CardShadow>
+        )}
+      </>
     </div>
   );
 };
@@ -51,6 +55,7 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
@@ -70,6 +75,7 @@ const Detail = styled(motion.div)`
   position: absolute;
   left: 10%;
   color: #000;
+  z-index: 10;
   img {
     width: 100%;
   }
@@ -98,6 +104,10 @@ const Media = styled(motion.div)`
   img {
     width: 100%;
   }
+`;
+
+const Description = styled(motion.div)`
+  margin: 5rem 0rem;
 `;
 
 export default GameDetail;
