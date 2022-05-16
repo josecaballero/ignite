@@ -43,13 +43,20 @@ const Nav = () => {
 const StyledNav = styled(motion.nav)`
   padding: 3rem 5rem;
   text-align: center;
+  @media only screen and (max-width: 850px) {
+    padding: 3rem;
+  }
   input {
-    width: 30%;
+    width: 45%;
     font-size: 1.5rem;
     padding: 0.5rem;
     border: none;
     margin-top: 1rem;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    @media only screen and (max-width: 850px) {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
   button {
     font-size: 1.5rem;
