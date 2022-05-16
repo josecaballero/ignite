@@ -56,3 +56,7 @@ export const gameDetailsURL = (game_id) =>
 // GAME Scrseenshot
 export const gameScreenshotsURL = (game_id) =>
   `${base_url}games/${game_id}/screenshots?key=${process.env.REACT_APP_IGNITE}`;
+
+// Searched Game
+export const searchGameURL = (game_name) =>
+  `${base_url}games?key=${process.env.REACT_APP_IGNITE}&search=${game_name}&page_size=2`;

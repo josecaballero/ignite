@@ -18,12 +18,14 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(loadGames());
-  }, []); // OJO: SI NO PONEMOS EL ARRAY DEPENDENCY VACÍO, SE EJECUTA SIN PARAR. SI QUEREMOS QUE SE EJECUTE CADA VEZ QUE CAMBIE EL ESTADO DE ALGO SE PONE AHÍ DICHO ELEMENTO.
+  }, [dispatch]); // OJO: SI NO PONEMOS EL ARRAY DEPENDENCY VACÍO, SE EJECUTA SIN PARAR. SI QUEREMOS QUE SE EJECUTE CADA VEZ QUE CAMBIE EL ESTADO DE ALGO SE PONE AHÍ DICHO ELEMENTO.
 
   // Get the data back
   // const games = useSelector((state) => state.games);
   /* Extraemos lo que queremos de games  */
-  const { popular, upcoming, newGames } = useSelector((state) => state.games);
+  const { popular, upcoming, newGames, searched } = useSelector(
+    (state) => state.games
+  );
 
   return (
     <GameList>
@@ -31,6 +33,26 @@ const Home = () => {
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
+        {searched.length ? (
+          <div className="searched">
+            <h2>Searched Games</h2>
+            <Games>
+              {searched.map((game) => {
+                return (
+                  <Game
+                    key={game.id}
+                    id={game.id}
+                    name={game.name}
+                    releaseDate={game.released}
+                    image={game.background_image}
+                  />
+                );
+              })}
+            </Games>
+          </div>
+        ) : (
+          ""
+        )}
         <h2>Upcoming Games</h2>
         <Games>
           {upcoming.map((game) => {
@@ -80,16 +102,23 @@ const Home = () => {
 
 const GameList = styled(motion.div)`
   padding: 0 5rem;
+  @media only screen and (max-width: 768px) {
+    padding: 0 1rem;
+  }
   h2 {
     padding: 5rem 0;
   }
 `;
 const Games = styled(motion.div)`
-  min-height: 80vh;
+  /*   min-height: 80vh;
+ */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export default Home;

@@ -30,11 +30,13 @@ const GlobalStyles = createGlobalStyle`
     font-size: 3rem;
     font-family: "Abril Fatface", cursive;
     font-weight: lighter;
+    color: #333;
   }
 
   h3 {
     font-size: 1.3rem;
     padding: 1.5rem 0;
+    color: #333;
   }
   p {
     font-size: 1.2rem;
