@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { loadDetails } from "../actions/detailsAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
+import { scaleUp } from "../animations";
 
 const Game = ({ name, releaseDate, image, id }) => {
   const stringPathId = id.toString();
@@ -18,7 +19,13 @@ const Game = ({ name, releaseDate, image, id }) => {
   };
 
   return (
-    <StyledGame layoutId={stringPathId} onClick={loadDetailHandler}>
+    <StyledGame
+      variants={scaleUp}
+      initial="hidden"
+      animate="show"
+      layoutId={stringPathId}
+      onClick={loadDetailHandler}
+    >
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
         <p>{releaseDate}</p>
